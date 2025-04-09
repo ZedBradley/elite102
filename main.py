@@ -2,13 +2,13 @@ import sqlite3
 
 
 def main():
-    connection = sqlite3.connect('example.db')
+    connection = sqlite3.connect('bank.db')
     cursor = connection.cursor()
 
     # Get all rows from the students table
-    print("Fetching all rows from the students table...")
+    print("Fetching all rows from the users table...")
     results = cursor.execute('''
-        SELECT * FROM students
+        SELECT * FROM users
     ''')
 
     print("Results:")
@@ -18,7 +18,7 @@ def main():
     # Get all students with a GPA greater than 3.5
     print("Fetching students with GPA greater than 3.5...")
     results = cursor.execute('''
-        SELECT * FROM students WHERE gpa > 3.5
+        SELECT * FROM users WHERE lName = 'Marley'
     ''')
     print("Results:")
     for row in results:
