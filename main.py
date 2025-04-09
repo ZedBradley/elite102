@@ -16,7 +16,7 @@ def main():
         print(row)
 
     # Get all students with a GPA greater than 3.5
-    print("Fetching students with GPA greater than 3.5...")
+    print("Fetching students with last name Marley...")
     results = cursor.execute('''
         SELECT * FROM users WHERE lName = 'Marley'
     ''')
