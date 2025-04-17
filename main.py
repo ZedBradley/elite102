@@ -1,4 +1,10 @@
 import sqlite3
+from tkinter import *
+from tkinter import ttk
+
+
+
+
 
 
 def main():
@@ -23,6 +29,19 @@ def main():
     print("Results:")
     for row in results:
         print(row)
+    root = Tk()
+    root.title("Simple Tkinter App")
+
+    label = ttk.Label(root, text="Hello, Tkinter!")
+    label.pack(pady=20)
+
+    def button_click():
+        label.config(text="Button Clicked!")
+
+    button = ttk.Button(root, text="Click Me", command=button_click)
+    button.pack(pady=10)
+
+    root.mainloop()
 
     connection.close()
 
