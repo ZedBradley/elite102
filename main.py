@@ -16,35 +16,26 @@ def main():
     results = cursor.execute('''
         SELECT * FROM users
     ''')
-
     print("Results:")
     for row in results:
         print(row)
 
+    table_accounts = cursor.execute('''
+        SELECT * FROM accounts        
+    ''')
+    print("Results:")
+    for acc in table_accounts:
+        print(acc)
+
     # Get all students with a GPA greater than 3.5
-    print("Fetching students with last name Marley...")
+    print("Fetching users with last name Marley...")
     results = cursor.execute('''
         SELECT * FROM users WHERE lName = 'Marley'
     ''')
     print("Results:")
     for row in results:
         print(row)
-    root = Tk()
-    root.title("Simple Tkinter App")
-
-    label = ttk.Label(root, text="Hello, Tkinter!")
-    label.pack(pady=20)
-
-    def button_click():
-        label.config(text="Button Clicked!")
-
-    button = ttk.Button(root, text="Click Me", command=button_click)
-    button.pack(pady=10)
-
-    root.mainloop()
-
     connection.close()
-
 
 if __name__ == "__main__":
     main()
