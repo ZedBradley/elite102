@@ -1,5 +1,4 @@
 import sqlite3
-
 DB_NAME = 'bank.db'
 
 def initialize_database():
