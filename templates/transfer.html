@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer</title>
+</head>
+<body>
+    <h2>Transfer Funds</h2>
+    <form method="post">
+        From Account ID: <input type="number" name="from_account"><br>
+        To Account ID: <input type="number" name="to_account"><br>
+        Amount: <input type="number" step="0.01" name="amount"><br>
+        <input type="submit" value="Transfer">
+    </form>
+    <a href="{{ url_for('home') }}">Back</a>
+</body>
+</html>

@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Banking App</title>
-    </head>
-    <body> 
-        <h1> Welcome to the banking app</h1>
-        <div> Account Balance is: {{ view_balance(id) }}</div>
-    </body>
+<head>
+    <title>Your Accounts</title>
+</head>
+<body>
+    <h2>Find My Accounts</h2>
+    <form method="post">
+        First Name: <input type="text" name="fName"><br>
+        Last Name: <input type="text" name="lName"><br>
+        <input type="submit" value="Search">
+    </form>
+
+    {% if accounts %}
+        <h3>Results:</h3>
+        <ul>
+        {% for acc in accounts %}
+            <li>Account ID: {{ acc[0] }}, Type: {{ acc[1] }}, Balance: ${{ acc[2] }}
+                - <a href="{{ url_for('balance', account_id=acc[0]) }}">View Balance</a>
+                - <a href="{{ url_for('withdraw_page', account_id=acc[0]) }}">Withdraw</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}">Back</a>
+</body>
 </html>

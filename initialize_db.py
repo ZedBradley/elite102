@@ -106,7 +106,7 @@ def log_transaction(account_id, action, amount):
         conn = sqlite3.connect(DB_NAME)
         conn.execute("PRAGMA journal_mode=WAL")  # prevent the damn locks
         cursor = conn.cursor()
-
+        # transactions table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS transactions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -132,12 +132,12 @@ def log_transaction(account_id, action, amount):
 def get_accounts_by_name(fName, lName):
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
+        #joining accounts and users to get accurate results
         cursor.execute('''
             SELECT accounts.id, type, balance
             FROM accounts
-            JOIN users ON accounts.user_id = users.id 
+            JOIN users ON accounts.user_id = users.id  
             WHERE users.fName = ? AND users.lName = ?
         ''', (fName, lName))
-        #above joins accounts and users then finds entries with fname and lname
-        return cursor.fetchall() # returns results from last query
+        return cursor.fetchall()
 
