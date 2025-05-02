@@ -50,11 +50,11 @@ def balance(account_id):
 @app.route('/deposit', methods=['GET', 'POST'])
 def deposit_page():
     if request.method == 'POST':
-        acc_id = int(request.form['account_id'])
-        amount = float(request.form['amount'])
+        acc_id = int(request.form['account_id'])# acc id
+        amount = float(request.form['amount']) # amount
         deposit(acc_id, amount)
-        flash('Deposit successful.')
-        return redirect(url_for('home'))
+        flash('Deposit successful.') # flash message
+        return redirect(url_for('home')) # back home
     return render_template('deposit.html')
 
 
@@ -62,21 +62,21 @@ def deposit_page():
 @app.route('/withdraw', methods=['GET', 'POST'])
 def withdraw_page():
     if request.method == 'POST':
-        acc_id = int(request.form['acc_id'])
-        amount = float(request.form['amount'])
+        acc_id = int(request.form['acc_id']) # account id 
+        amount = float(request.form['amount']) # amount
         if withdraw(acc_id, amount):
-            flash('Withdrawal successful!')
+            flash('Withdrawal successful!') #flash message
         else:
             flash('Insufficient funds or account does not exist.')
-        return redirect(url_for('home'))
+        return redirect(url_for('home')) # going back to home page
     return render_template('withdraw.html')
 
 # Transfer
 @app.route('/transfer', methods=['GET', 'POST'])
 def transfer_page():
     if request.method == 'POST':
-        from_id = int(request.form['from_account'])
-        to_id = int(request.form['to_account'])
+        from_id = int(request.form['from_account']) #account from id
+        to_id = int(request.form['to_account']) # account to id
         amount = float(request.form['amount'])
         if transfer(from_id, to_id, amount):
             flash('Transfer successful.')

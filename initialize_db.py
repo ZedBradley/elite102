@@ -5,6 +5,7 @@ def initialize_database():
     connection = sqlite3.connect(DB_NAME)
     cursor = connection.cursor()
 
+    #users info
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -15,6 +16,7 @@ def initialize_database():
         )
     ''')
 
+    #accounts info
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS accounts (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -47,7 +49,7 @@ def withdraw(account_id, amount):
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT balance FROM accounts WHERE id = ?", (account_id,))
-        balance = cursor.fetchone()
+        balance = cursor.fetchone() # gets one row
         if balance and balance[0] >= amount:
             cursor.execute("UPDATE accounts SET balance = balance - ? WHERE id = ?", (amount, account_id))
             conn.commit()
